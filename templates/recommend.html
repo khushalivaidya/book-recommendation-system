@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Book Recommender System</title>
+        <style>
+            body{
+                background-color: rgb(56, 34, 14);
+            }
+            
+            a:link {
+            text-decoration: none;
+            }
+
+            a:visited {
+            text-decoration: none;
+            color: rgb(56, 34, 14);
+            }
+
+            a:hover {
+            text-decoration:underline;
+            }
+            li{
+                list-style: none;
+                text-decoration: none;
+                margin: 10px;
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            * {
+                margin: 0px;
+                padding: 0;
+            }
+
+            .nav-bar{
+                display: flex;
+            }
+
+            .main-nav{
+                height: 8vh;
+                display: flex;
+                padding: 15px;
+                justify-content: space-between;
+                align-items: center;
+                background-color:antiquewhite;
+                font-size: 30px;
+            }
+            .container{
+                padding: 25px;
+                text-align: center;
+            }
+            .title{
+                color:antiquewhite;
+                font-size: 50px;
+                margin-bottom: 30px;
+            }
+            input{
+                margin: 10px;
+            }
+            .form-control{
+                /* height: 40px; */
+                font-weight: bold;
+                width: 300px;
+                padding: 10px 25px;
+                background-color: antiquewhite;
+                border-radius: 15px;
+                border: none;
+                color: rgb(56, 34, 14);
+            }
+            .btn{
+                padding: 8px;
+                font-weight: bold;
+                border-radius: 15px;
+                background-color: antiquewhite;
+                color: rgb(56, 34, 14);
+                border: none;
+            }
+            .input-field{
+                display: flex;
+                justify-content: center;
+            }
+            .book-card{
+                height: 50vh;
+                width: 18vw;
+                margin-left: 5px;
+                margin-right: 5px;
+                margin-bottom: 30px;
+                background-color:rgb(61, 41, 19);
+                border-radius: 10px;
+                padding-top: 15px;
+                align-items: start;
+            }
+
+            .book-img{
+                height: 35vh;
+                margin-bottom: 5px;
+                border-radius: 10px;
+            }
+
+            .books{
+                display: flex;
+                flex-wrap:wrap;
+                justify-content: center;
+                padding-top: 30px;
+            }
+            .name{
+                font-weight: bold;
+                /* text-align: start; */
+            }
+            .author{
+                /* text-align: start; */
+                font-size: 15px;
+            }
+            h4{
+                font-size: 12px;
+                color:antiquewhite;
+                width: 13vw;
+            }
+            p{
+                color: antiquewhite;
+                margin-bottom: 4px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <nav class="main-nav">
+            <h1>Book Recommendation System</h1>
+            <ul class="nav-bar">
+                <li ><a href="/">Home</a></li>
+                <li><a href="/recommend">Recommender</a></li>
+                <li>Contact</li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div> 
+                    <h1 class="title">Recommend Books</h1>
+                    <form action="/recommend_books" method="post" class="input-field">
+                        <input name="user_input" type="text" class="form-control"><br>
+                        <input type="submit" class="btn">
+                    </form>
+                </div>
+
+                {% if data %}
+                <div class="books">
+                    {% for i in data %}
+                        <div class="book-card">
+                            <!-- {{nb}} -->
+                            
+                            <img class="book-img" src={{i[2]}} />
+                            <br>
+                            
+                            <p class="name">{{i[0]}}</p>
+                            <p class="author">{{i[1]}}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% endif %}
+            </div>
+        </div>
+
+    </body>
+</html>
